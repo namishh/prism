@@ -3,35 +3,8 @@ local prismPath  = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h
 vim.g.themeCache = vim.fn.stdpath "data" .. "/prism/"
 local hl_files   = prismPath .. "/highlights"
 -- default colors
-M.colors         = {
-  background = "#181b21",
-  contrast = '#1c1f26',
-  foreground = "#dcdee6",
-  cursorline = '#1c1f26',
-  comment = '#79818f',
-  darker = '#111418',
-  cursor = "#dcdee6",
-  black = "#181b21",
-  color0 = "#272b33",
-  color1 = "#c75f68",
-  color2 = "#60ae7f",
-  color3 = "#cb795f",
-  color4 = "#7095db",
-  color5 = "#b475c6",
-  color6 = "#63b0b9",
-  color7 = "#abb2bf",
-  color8 = "#2d3139",
-  color9 = "#e0626c",
-  color10 = "#6bbd8c",
-  color11 = "#d9846a",
-  color12 = "#7ca0e3",
-  color13 = "#bf75d4",
-  color14 = "#6ec0cb",
-  color15 = "#abb2bf",
-  comment_light = "#9096a1",
-
-}
-
+M.colors         = require("prism.schemes.onedarker")
+M.transparent    = false
 function M:mergeTb(...)
   return vim.tbl_deep_extend("force", ...)
 end
@@ -66,6 +39,9 @@ function M:tableToStr(tb)
 end
 
 function M:getColors()
+  if M.transparent then
+    self.colors.background = "NONE"
+  end
   return self.colors
 end
 
@@ -107,10 +83,11 @@ end
 function M:setup(opts)
   opts = opts or {}
   if type(opts.colors) == "string" then
-    self.colors = require("prism.schemes." .. opts.colors).get_colors()
+    self.colors = require("prism.schemes." .. opts.colors)
   else
     self.colors = opts.colors or self:getColors()
   end
+  M.transparent = opts.transparent or M.transparent
   M.customFiles = opts.customFiles or vim.fn.stdpath "config" .. "/lua/themes/hls"
   M.customFilesPath = opts.customFilesPath or "themes.hls"
 

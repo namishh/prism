@@ -1,9 +1,11 @@
+## Prism
+
 WIP plugin for fast custom colorscheme caching
 
 ### Todo
 
 - [x] Custom highlights
-- [ ] Transparency
+- [x] Transparency
 - [ ] Highlights for other plugins
 - [ ] Documentation
 - [x] Some default themes
