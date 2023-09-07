@@ -9,3 +9,4 @@ WIP plugin for fast custom colorscheme caching
 - [ ] Highlights for other plugins
 - [ ] Documentation
 - [x] Some default themes
+- [ ] More color related functions
