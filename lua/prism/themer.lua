@@ -1,10 +1,9 @@
-local M           = {}
-local prismPath   = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
-vim.g.themeCache  = vim.fn.stdpath "data" .. "/prism/"
-vim.g.customFiles = vim.fn.stdpath "config" .. "/lua/themes/hls"
-local hl_files    = prismPath .. "/highlights"
+local M          = {}
+local prismPath  = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
+vim.g.themeCache = vim.fn.stdpath "data" .. "/prism/"
+local hl_files   = prismPath .. "/highlights"
 -- default colors
-M.colors          = {
+M.colors         = {
   background = "#181b21",
   contrast = '#1c1f26',
   foreground = "#dcdee6",
@@ -38,7 +37,7 @@ function M:mergeTb(...)
 end
 
 function M:loadLocalTb(g)
-  g = require("themes.hls." .. g)
+  g = require(M.customFilesPath .. "." .. g)
   return g
 end
 
@@ -92,7 +91,7 @@ function M:compile()
   end
 
 
-  for _, file in ipairs(vim.fn.readdir(vim.g.customFiles)) do
+  for _, file in ipairs(vim.fn.readdir(M.customFiles)) do
     local filename = vim.fn.fnamemodify(file, ":r")
     M:toCache(filename, M:loadLocalTb(filename))
   end
@@ -107,8 +106,14 @@ end
 
 function M:setup(opts)
   opts = opts or {}
-  self.colors = opts.colors or self:getColors()
-  vim.g.customFiles = opts.customFiles or vim.g.customFiles
+  if type(opts.colors) == "string" then
+    self.colors = require("prism.schemes." .. opts.colors).get_colors()
+  else
+    self.colors = opts.colors or self:getColors()
+  end
+  M.customFiles = opts.customFiles or vim.fn.stdpath "config" .. "/lua/themes/hls"
+  M.customFilesPath = opts.customFilesPath or "themes.hls"
+
   M:load()
 end
 
