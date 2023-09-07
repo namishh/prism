@@ -45,7 +45,6 @@ require("prism"):setup({
   },
   -- colors = "onedarker", -- you can also use one of the many preinstalled colorschemes
   customFiles = vim.fn.stdpath "config" .. "/lua/hls/",
-  customFilesPath = "hls",
   transparent = false
 })
 ```
@@ -69,8 +68,6 @@ return {
 }
 ```
 
-- The `customFilesPath` var tells how path of the `customFiles` folder is lua terms. For eg, `lua/themes/hls` becomes `themes.hls` and `lua/hls` just becomes `hls`. I am working on ways to eliminate the need of this variable
-
 ## Utils
 
 For even more options for coloring, a bunch of methods have been provided in `prism.utils`.
@@ -85,6 +82,20 @@ For even more options for coloring, a bunch of methods have been provided in `pr
 - `M.warm(hex1, factor)`
 - `M.cold(hex1, factor)`
 
+## Supported Plugins
+
+- [lualine](https://github.com/nvim-lualine/lualine.nvim)
+- [bufferline](https://github.com/akinsho/bufferline.nvim)
+- [barbecue](https://github.com/utilyre/barbecue.nvim)
+- [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+- [nvim-tree](https://github.com/kyazdani42/nvim-tree.lua)
+- [telescope](https://github.com/nvim-telescope/telescope.nvim)
+- [treesitter](https://github.com/nvim-treesitter/nvim-treesitter)
+- [whichkey](https://github.com/folke/which-key.nvim)
+- [devicons](https://github.com/rcarriga/nvim-notify)
+- [harpoon](https://github.com/ThePrimeagen/harpoon)
+- [hop](https://github.com/phaazon/hop.nvim)
+- [notify](https://github.com/rcarriga/nvim-notify)
 
 ### Todo
 

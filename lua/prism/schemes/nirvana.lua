@@ -1,6 +1,5 @@
 return {
   comment = "#5a5858",
-  comment_light = "#838383",
   background = "#121111",
   darker = "#0e0d0d",
   black = "#121111",

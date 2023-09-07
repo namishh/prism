@@ -22,5 +22,4 @@ return {
   color13 = "#bf75d4",
   color14 = "#6ec0cb",
   color15 = "#4c4c4c",
-  comment_light = "#5c5c5c",
 }
