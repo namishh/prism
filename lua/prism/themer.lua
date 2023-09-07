@@ -88,8 +88,8 @@ function M:setup(opts)
     self.colors = opts.colors or self:getColors()
   end
   M.transparent = opts.transparent or M.transparent
-  M.customFiles = opts.customFiles or vim.fn.stdpath "config" .. "/lua/themes/hls"
-  M.customFilesPath = opts.customFilesPath or "themes.hls"
+  M.customFiles = opts.customFiles or vim.fn.stdpath "config" .. "/lua/hls"
+  M.customFilesPath = opts.customFilesPath or "hls"
 
   M:load()
 end

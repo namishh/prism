@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="prism.png" alt="bottom panel preview">
+  <img src="prism.png" alt="logo">
   <h1> prism </h1>
   <p> easy and fast way to use custom made colorschemes </p>
 </div>
@@ -50,11 +50,46 @@ require("prism"):setup({
 })
 ```
 
+- For using custom highlights, make files in the `customFiles` folder. For example
+
+```lua
+-- .config/nvim/lua/hls/alpha.lua
+-- you can name the file however you want, because all the files in lua/hls would be read 
+
+local utils = require("prism.utils")
+local colors = require("prism.themer"):getColors()
+
+return {
+  AlphaHeader = { fg = colors.color4, bg = colors.background },
+  AlphaLabel = { fg = colors.color7, bg = colors.background },
+  AlphaIcon = { fg = colors.color5, bold = true, },
+  AlphaKeyPrefix = { fg = colors.color1, bg = utils.darken(colors.color1, colors.black, 0.04) },
+  AlphaMessage = { fg = colors.color2, bg = colors.background },
+  AlphaFooter = { fg = colors.comment, bg = colors.background },
+}
+```
+
+- The `customFilesPath` var tells how path of the `customFiles` folder is lua terms. For eg, `lua/themes/hls` becomes `themes.hls` and `lua/hls` just becomes `hls`. I am working on ways to eliminate the need of this variable
+
+## Utils
+
+For even more options for coloring, a bunch of methods have been provided in `prism.utils`.
+
+- `M.darken(hex, bg, amount)`
+- `M.lighten(hex, fg, amount)`
+- `M.mix(hex1, hex2, weight)`
+- `M.saturate(hex1, factor)`
+- `M.moreRed(hex1, factor)`
+- `M.moreGreen(hex1, factor)`
+- `M.moreBlue(hex1, factor)`
+- `M.warm(hex1, factor)`
+- `M.cold(hex1, factor)`
+
 
 ### Todo
 
 - [x] Custom highlights
 - [x] Transparency
-- [ ] Documentation
+- [x] Documentation
 - [x] Some default themes
 - [x] More color related functions
