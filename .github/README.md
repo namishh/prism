@@ -15,7 +15,7 @@ Requires [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 {
     "chadcat7/prism",
     lazy = true,
-    events = {"UIEnter", "Colorscheme"},
+    events = {"UIEnter"},
 }
 ```
 ## Configuration
@@ -23,6 +23,7 @@ Requires [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
 ```lua
 require("prism"):setup({
   customSchemes = {
+    -- Add any number of schemes here
     {
       name = "serenade",
       background = "#23282b",
@@ -31,7 +32,7 @@ require("prism"):setup({
       comment = "#767b82",
       darker = "#1e2124",
       cursor = "#bfddb2",
-      black = "#23282b",
+      black = "#23282b", -- useful when background is transparent
       color0 = "#2E3338",
       color1 = "#d76e6e",
       color2 = "#ACB765",
@@ -93,7 +94,7 @@ return {
   AlphaFooter = { fg = colors.comment, bg = colors.background },
 }
 ```
-## Telescrope picker
+## Telescope picker
 
 There is telescope picker included with this config. Shows the default and as well as the user defined colorschemes. Invoke it by
 
