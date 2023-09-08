@@ -27,14 +27,6 @@ cmd(
 )
 
 cmd(
-  'PrismReload',
-  function(opts)
-    themer:load()
-  end,
-  { nargs = 0 }
-)
-
-cmd(
   'PrismTelescope',
   function(opts)
     require("prism.picker").open()
