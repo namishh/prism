@@ -1,4 +1,5 @@
 return {
+  name = "onedarker",
   background = "#181b21",
   foreground = "#dcdee6",
   cursorline = '#1c1f26',

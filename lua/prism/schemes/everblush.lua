@@ -1,6 +1,7 @@
 -- theme by mangeshrex https://github.com/Everblush
 -- modified by me
 return {
+  name = "everblush",
   color0 = '#232a2d',
   color1 = '#e65b5b',
   color2 = '#6eae5d',

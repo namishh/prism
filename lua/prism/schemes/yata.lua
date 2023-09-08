@@ -1,6 +1,7 @@
 -- theme by my dude / dudette tsukki https://github.com/tsukki9696/
 -- check out their neovim config at https://github.com/tsukki9696/totsuka.nvim
 return {
+  name = "yata",
   comment = "#505050",
   background = "#0f0f0f",
   black = "#0f0f0f",

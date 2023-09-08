@@ -1,4 +1,5 @@
 return {
+  name = "gruvl",
   comment = "#7c6f64",
   background = "#f9f5d7",
   darker = "#f3eac7",

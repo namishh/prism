@@ -11,6 +11,7 @@
 ```lua
 {
     "chadcat7/prism",
+    lazy = true,
     events = {"UIEnter", "Colorscheme"},
 }
 ```
@@ -18,34 +19,37 @@
 
 ```lua
 require("prism"):setup({
-  colors = {
-    comment = "#6c7086",
-    background = "#11111b",
-    black = "#11111b", -- this is used for text when background is transparent
-    darker = "#0d0d15",
-    foreground = "#f5e0dc",
-    cursorline = "#161623",
-    cursor = "#b5bfe2",
-    color0 = "#292c35",
-    color1 = "#d05759",
-    color2 = "#5fbf70",
-    color3 = "#e0875f",
-    color4 = "#6481d0",
-    color5 = "#c669cc",
-    color6 = "#61aca2",
-    color7 = "#b5bfe2",
-    color8 = "#373941",
-    color9 = "#e56e70",
-    color10 = "#7fd98f",
-    color11 = "#efa17f",
-    color12 = "#7c98e4",
-    color13 = "#d476da",
-    color14 = "#70b6ac",
-    color15 = "#83889a",
+  customSchemes = {
+    {
+      name = "serenade",
+      background = "#23282b",
+      foreground = "#cde5c3",
+      cursorline = "#272b2f",
+      comment = "#767b82",
+      darker = "#1e2124",
+      cursor = "#bfddb2",
+      black = "#23282b",
+      color0 = "#2E3338",
+      color1 = "#d76e6e",
+      color2 = "#ACB765",
+      color3 = "#e5a46b",
+      color4 = "#82abbc",
+      color5 = "#d39bb6",
+      color6 = "#87c095",
+      color7 = "#bfddb2",
+      color8 = "#373D41",
+      color9 = "#d76e6e",
+      color10 = "#ACB765",
+      color11 = "#e5a46b",
+      color12 = "#82abbc",
+      color13 = "#d39bb6",
+      color14 = "#87c095",
+      color15 = "#cfe0c7",
+    },
   },
-  -- colors = "onedarker", -- you can also use one of the many preinstalled colorschemes
-  customFiles = vim.fn.stdpath "config" .. "/lua/hls/",
-  transparent = false
+  currentTheme = "serenade",
+  customFiles = vim.fn.stdpath "config" .. "/lua/hls",
+  transparent = false,
 })
 ```
 

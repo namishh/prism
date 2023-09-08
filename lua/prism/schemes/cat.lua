@@ -1,4 +1,5 @@
 return {
+  name = "cat",
   comment = "#6c7086",
   background = "#11111b",
   black = "#11111b",

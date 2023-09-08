@@ -1,4 +1,5 @@
 return {
+  name = "groove",
   comment = "#928374",
   background = "#1e2122",
   darker = "#17191a",

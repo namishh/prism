@@ -1,10 +1,22 @@
-local M          = {}
-local prismPath  = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
-vim.g.themeCache = vim.fn.stdpath "data" .. "/prism/"
-local hl_files   = prismPath .. "/highlights"
+local M           = {}
+local prismPath   = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
+vim.g.themeCache  = vim.fn.stdpath "data" .. "/prism/"
+local hl_files    = prismPath .. "/highlights"
+local schemefiles = prismPath .. "/schemes"
 -- default colors
-M.colors         = require("prism.schemes.onedarker")
-M.transparent    = false
+M.colors          = {}
+
+M.themes          = {}
+
+function M:gendef()
+  for _, file in ipairs(vim.fn.readdir(schemefiles)) do
+    local filename = vim.fn.fnamemodify(file, ":r")
+    local a = require("prism.schemes." .. filename)
+    table.insert(self.themes, a)
+  end
+end
+
+M.transparent = false
 function M:mergeTb(...)
   return vim.tbl_deep_extend("force", ...)
 end
@@ -101,12 +113,21 @@ function M:load()
 end
 
 function M:setup(opts)
+  self:gendef()
   opts = opts or {}
-  if type(opts.colors) == "string" then
-    self.colors = require("prism.schemes." .. opts.colors)
-  else
-    self.colors = opts.colors or self:getColors()
+  local customSchemes = opts.customSchemes or {}
+  local currentTheme = opts.currentTheme or "cat"
+  for _, t in ipairs(customSchemes) do
+    table.insert(self.themes, t)
   end
+  local curr = {}
+  for _, t in ipairs(self.themes) do
+    if t.name == currentTheme then
+      curr = t
+      break
+    end
+  end
+  self.colors = curr
   M.transparent = opts.transparent or M.transparent
   M.customFiles = opts.customFiles or vim.fn.stdpath "config" .. "/lua/hls"
   local function mysplit(inputstr, sep)
