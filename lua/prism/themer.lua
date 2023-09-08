@@ -164,4 +164,23 @@ function M:setup(opts)
   M:load()
 end
 
+function M:set(name)
+  require("plenary.reload").reload_module "prism.highlights"
+  require("plenary.reload").reload_module("" .. self.customFilesPath)
+  local theme
+  for _, i in ipairs(self.themes) do
+    if i.name == name then
+      theme = i
+      break
+    end
+  end
+  self.colors = theme
+  M:load()
+end
+
+function M:random()
+  local theme = self.themes[math.random(#self.themes)]
+  self:set(theme.name)
+end
+
 return M
