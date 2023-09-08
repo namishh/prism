@@ -112,12 +112,27 @@ function M:load()
   M:setTermCols()
 end
 
+local function indexOf(array, value)
+  for i, v in ipairs(array) do
+    if v == value then
+      return i
+    end
+  end
+  return nil
+end
+
 function M:setup(opts)
   self:gendef()
   opts = opts or {}
   local customSchemes = opts.customSchemes or {}
   local currentTheme = opts.currentTheme or "cat"
   for _, t in ipairs(customSchemes) do
+    for _, i in ipairs(self.themes) do
+      if i.name == t.name then
+        table.remove(self.themes, indexOf(self.themes, i))
+        break
+      end
+    end
     table.insert(self.themes, t)
   end
   local curr = {}

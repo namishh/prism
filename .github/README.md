@@ -52,6 +52,7 @@ require("prism"):setup({
   transparent = false,
 })
 ```
+- If a theme with the same name is already included in the defaults, theme specified by the user will be given preference
 
 - For using custom highlights, make files in the `customFiles` folder. For example
 
@@ -105,6 +106,8 @@ For even more options for coloring, a bunch of methods have been provided in `pr
 
 - [x] Custom highlights
 - [x] Transparency
-- [x] Documentation
-- [x] Some default themes
+- [ ] Documentation
+- [ ] Some default themes
 - [x] More color related functions
+- [ ] Telescope Prompt
+- [ ] Built In Commands
