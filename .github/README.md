@@ -6,6 +6,9 @@
 
 ## Install
 
+Requires [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
+
+
 - lazy.nvim
 
 ```lua
@@ -48,10 +51,28 @@ require("prism"):setup({
     },
   },
   currentTheme = "serenade",
+  -- currentTheme = "onedarker",
   customFiles = vim.fn.stdpath "config" .. "/lua/hls",
   transparent = false,
 })
 ```
+
+- Preinstalled themes
+    1. Cat 
+    2. Everblush 
+    3. Everforest
+    4. Fox
+    5. Groove
+    6. Gruv
+    7. Gruvl
+    8. Nord
+    9. onedarker
+    10. Radium
+    11. Serenity
+    12. Tokyodull
+    13. Verdant
+    14. Yata
+
 - If a theme with the same name is already included in the defaults, theme specified by the user will be given preference
 
 - For using custom highlights, make files in the `customFiles` folder. For example
@@ -71,6 +92,13 @@ return {
   AlphaMessage = { fg = colors.color2, bg = colors.background },
   AlphaFooter = { fg = colors.comment, bg = colors.background },
 }
+```
+## Telescrope picker
+
+There is telescope picker included with this config. Shows the default and as well as the user defined colorschemes. Invoke it by
+
+```
+:lua require("prism.picker").open()
 ```
 
 ## Utils
@@ -106,8 +134,7 @@ For even more options for coloring, a bunch of methods have been provided in `pr
 
 - [x] Custom highlights
 - [x] Transparency
-- [ ] Documentation
-- [ ] Some default themes
+- [x] Documentation
+- [x] Some default themes
 - [x] More color related functions
-- [ ] Telescope Prompt
-- [ ] Built In Commands
+- [x] Telescope Prompt
