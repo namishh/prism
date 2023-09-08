@@ -17,7 +17,7 @@ vim.print(schemes)
 M.open = function(opts)
   opts = opts or {}
   pickers.new(opts, {
-    prompt_title = "Kolorschemes",
+    prompt_title = "Change The Spectrum",
     finder = finders.new_table {
       results = schemes
     },

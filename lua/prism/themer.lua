@@ -135,6 +135,7 @@ function M:setup(opts)
     end
     table.insert(self.themes, t)
   end
+  vim.g.prismThemes = self.themes
   local curr = {}
   for _, t in ipairs(self.themes) do
     if t.name == currentTheme then
