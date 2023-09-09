@@ -55,6 +55,7 @@ require("prism"):setup({
   -- currentTheme = "onedarker",
   customFiles = vim.fn.stdpath "config" .. "/lua/hls",
   transparent = false,
+  reload = { "lualine" }, -- modules to be reloaded everytime theme is set 
 })
 ```
 

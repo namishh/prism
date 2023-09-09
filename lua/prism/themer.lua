@@ -3,9 +3,9 @@ local prismPath   = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:
 vim.g.themeCache  = vim.fn.stdpath "data" .. "/prism/"
 local hl_files    = prismPath .. "/highlights"
 local schemefiles = prismPath .. "/schemes"
--- default colors
-M.colors          = {}
 
+M.colors          = {}
+M.modules         = {}
 M.themes          = {}
 
 function M:gendef()
@@ -121,11 +121,22 @@ local function indexOf(array, value)
   return nil
 end
 
+function M:reloadModule(name)
+  require("plenary.reload").reload_module(name)
+end
+
+function M:reloadAllModules()
+  for _, mod in ipairs(self.modules) do
+    self:reloadModule(mod)
+  end
+end
+
 function M:setup(opts)
   self:gendef()
   opts = opts or {}
   local customSchemes = opts.customSchemes or {}
   local currentTheme = opts.currentTheme or "cat"
+  local mods = opts.reload or {}
   for _, t in ipairs(customSchemes) do
     for _, i in ipairs(self.themes) do
       if i.name == t.name then
@@ -135,6 +146,10 @@ function M:setup(opts)
     end
     table.insert(self.themes, t)
   end
+  for _, t in ipairs(mods) do
+    table.insert(self.modules, t)
+  end
+  self:setCmds()
   vim.g.prismThemes = self.themes
   local curr = {}
   for _, t in ipairs(self.themes) do
@@ -166,8 +181,9 @@ function M:setup(opts)
 end
 
 function M:set(name)
-  require("plenary.reload").reload_module "prism.highlights"
-  require("plenary.reload").reload_module("" .. self.customFilesPath)
+  self:reloadModule("prism.highlights")
+  self:reloadModule("" .. self.customFilesPath)
+  self:reloadAllModules()
   local theme
   for _, i in ipairs(self.themes) do
     if i.name == name then
@@ -182,6 +198,55 @@ end
 function M:random()
   local theme = self.themes[math.random(#self.themes)]
   self:set(theme.name)
+end
+
+local has_value = function(tab, val)
+  for _, value in ipairs(tab) do
+    if value == val then
+      return true
+    end
+  end
+  return false
+end
+
+function M:setCmds()
+  local available_themes = {}
+  for _, val in ipairs(M.themes) do
+    table.insert(available_themes, val.name)
+  end
+  local cmd = vim.api.nvim_create_user_command
+  cmd(
+    'PrismSet',
+    function(opts)
+      if has_value(available_themes, opts.args) then
+        self:set(opts.args)
+      else
+        print 'Invalid Theme'
+      end
+    end,
+    {
+      nargs = 1,
+      complete = function()
+        return available_themes
+      end,
+
+    }
+  )
+  cmd(
+    'PrismRandom',
+    function()
+      self:random()
+    end,
+    { nargs = 0 }
+  )
+
+  cmd(
+    'PrismTelescope',
+    function()
+      require("prism.picker").open()
+    end,
+    { nargs = 0 }
+  )
 end
 
 return M
