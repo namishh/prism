@@ -100,7 +100,21 @@ return {
 There is telescope picker included with this config. Shows the default and as well as the user defined colorschemes. Invoke it by
 
 ```
-:lua require("prism.picker").open()
+:PrismTelescope
+```
+
+## Commands
+
+For setting theme without the picker - 
+
+```
+:PrismSet <themename>
+```
+
+For setting random theme - 
+
+```
+:PrismRandom
 ```
 
 ## Utils
@@ -136,7 +150,6 @@ For even more options for coloring, a bunch of methods have been provided in `pr
 
 - [x] Custom highlights
 - [x] Transparency
-- [x] Documentation
 - [x] Some default themes
 - [x] More color related functions
 - [x] Telescope Prompt
