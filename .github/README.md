@@ -1,7 +1,5 @@
 <div align="center">
   <img src="prism.png" alt="logo">
-  <h1> prism </h1>
-  <p> easy and fast way to use custom made colorschemes </p>
 </div>
 
 ## Install
