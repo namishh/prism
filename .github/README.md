@@ -76,6 +76,7 @@ require("prism"):setup({
     16. Kizu
     17. Yoru
     18. Camellia
+    19. Vscodedull
 
 - If a theme with the same name is already included in the defaults, theme specified by the user will be given preference
 
