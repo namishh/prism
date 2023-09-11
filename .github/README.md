@@ -66,7 +66,7 @@ require("prism"):setup({
     6. Gruv
     7. Gruvl
     8. Nord
-    9. onedarker
+    9. Onedarker
     10. Radium
     11. Serenity
     12. Tokyodull
@@ -74,6 +74,8 @@ require("prism"):setup({
     14. Yata
     15. Oxo
     16. Kizu
+    17. Yoru
+    18. Camellia
 
 - If a theme with the same name is already included in the defaults, theme specified by the user will be given preference
 
