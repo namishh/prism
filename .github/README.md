@@ -77,6 +77,7 @@ require("prism"):setup({
     17. Yoru
     18. Camellia
     19. Vscodedull
+    20. Ghost
 
 - If a theme with the same name is already included in the defaults, theme specified by the user will be given preference
 
