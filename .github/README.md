@@ -72,6 +72,7 @@ require("prism"):setup({
     12. Tokyodull
     13. Verdant
     14. Yata
+    15. Oxo
 
 - If a theme with the same name is already included in the defaults, theme specified by the user will be given preference
 
