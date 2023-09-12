@@ -11,7 +11,7 @@ for _, file in ipairs(themes.themes) do
   table.insert(schemes, file.name)
 end
 
-vim.print(schemes)
+table.sort(schemes)
 
 
 M.open = function(opts)
