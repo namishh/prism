@@ -57,33 +57,6 @@ require("prism"):setup({
   reload = { "lualine" }, -- modules to be reloaded everytime theme is set 
 })
 ```
-
-- Preinstalled themes
-    1. Cat 
-    2. Everblush 
-    3. Everforest
-    4. Fox
-    5. Groove
-    6. Gruv
-    7. Gruvl
-    8. Nord
-    9. Onedarker
-    10. Radium
-    11. Serenity
-    12. Tokyodull
-    13. Verdant
-    14. Yata
-    15. Oxo
-    16. Kizu
-    17. Yoru
-    18. Camellia
-    19. Vscodedull
-    20. Ghost
-    21. Kanagawa
-    22. Onenord
-    23. Dracula
-    24. Github
-
 - If a theme with the same name is already included in the defaults, theme specified by the user will be given preference
 
 - For using custom highlights, make files in the `customFiles` folder. For example
@@ -104,6 +77,35 @@ return {
   AlphaFooter = { fg = colors.comment, bg = colors.background },
 }
 ```
+
+## Preinstalled themes
+
++ Camellia
++ Cat 
++ Dracula
++ Everblush 
++ Everforest
++ Fox
++ Ghost
++ Groove
++ Gruv
++ Gruvl
++ Github
++ Kanagawa
++ Kizu
++ Nirvana
++ Nord
++ Onedarker
++ Onenord
++ Oxo
++ Radium
++ Serenity
++ Tokyodull
++ Verdant
++ Vscodedull
++ Yata
++ Yoru
+
 ## Telescope picker
 
 There is telescope picker included with this config. Shows the default and as well as the user defined colorschemes. Invoke it by
