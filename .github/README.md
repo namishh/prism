@@ -81,6 +81,8 @@ require("prism"):setup({
     20. Ghost
     21. Kanagawa
     22. Onenord
+    23. Dracula
+    24. Github
 
 - If a theme with the same name is already included in the defaults, theme specified by the user will be given preference
 
