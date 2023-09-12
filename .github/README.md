@@ -50,6 +50,7 @@ require("prism"):setup({
     },
   },
   currentTheme = "serenade",
+  reset = true, -- applies the currentTheme everytime neovim is opened
   -- currentTheme = "onedarker",
   customFiles = vim.fn.stdpath "config" .. "/lua/hls",
   transparent = false,
@@ -78,6 +79,8 @@ require("prism"):setup({
     18. Camellia
     19. Vscodedull
     20. Ghost
+    21. Kanagawa
+    22. Onenord
 
 - If a theme with the same name is already included in the defaults, theme specified by the user will be given preference
 

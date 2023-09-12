@@ -112,6 +112,13 @@ function M:load()
   M:setTermCols()
 end
 
+function M:loadColsOnly()
+  for _, file in ipairs(vim.fn.readdir(vim.g.themeCache)) do
+    dofile(vim.g.themeCache .. file)
+  end
+  M:setTermCols()
+end
+
 local function indexOf(array, value)
   for i, v in ipairs(array) do
     if v == value then
@@ -136,6 +143,10 @@ function M:setup(opts)
   opts = opts or {}
   local customSchemes = opts.customSchemes or {}
   local currentTheme = opts.currentTheme or "cat"
+  local reset = false
+  if opts.reset == true then
+    reset = true
+  end
   local mods = opts.reload or {}
   for _, t in ipairs(customSchemes) do
     for _, i in ipairs(self.themes) do
@@ -176,8 +187,15 @@ function M:setup(opts)
   local f = mysplit(a, "/")
   local n = table.concat(f, ".")
   M.customFilesPath = n or "hls"
-
-  M:load()
+  if reset then
+    M:load()
+  else
+    if vim.fn.isdirectory(vim.g.themeCache) ~= 1 then
+      M:load()
+    else
+      M:loadColsOnly()
+    end
+  end
 end
 
 function M:set(name)
