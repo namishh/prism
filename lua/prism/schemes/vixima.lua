@@ -1,5 +1,5 @@
 return {
-  name = "camellia",
+  name = "vixima",
   background = "#101013",
   foreground = "#e4e5e7",
   cursorline = '#17181c',

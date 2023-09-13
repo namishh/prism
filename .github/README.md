@@ -80,7 +80,9 @@ return {
 
 ## Preinstalled themes
 
-+ Camellia
++ Ayu
++ Decay
++ Cosmicdecay
 + Cat 
 + Dracula
 + Everblush 
@@ -89,7 +91,6 @@ return {
 + Ghost
 + Groove
 + Gruv
-+ Gruvl
 + Github
 + Kanagawa
 + Kizu
@@ -102,6 +103,7 @@ return {
 + Serenity
 + Tokyodull
 + Verdant
++ Vixima
 + Vscodedull
 + Yata
 + Yoru
