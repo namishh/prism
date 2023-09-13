@@ -4,6 +4,7 @@ local actions      = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 local conf         = require("telescope.config").values
 local themes       = require("prism.themer")
+local action_set   = require "telescope.actions.set"
 local M            = {}
 
 local schemes      = {}
@@ -27,6 +28,16 @@ M.open = function(opts)
         local theme = action_state.get_selected_entry().value
         themes:set(theme)
         actions.close(buffer)
+      end)
+      actions.move_selection_next:replace(function(prompt_bufnr)
+        action_set.shift_selection(prompt_bufnr, 1)
+        local theme = action_state.get_selected_entry().value
+        themes:setTemp(theme)
+      end)
+      actions.move_selection_previous:replace(function(prompt_bufnr)
+        action_set.shift_selection(prompt_bufnr, -1)
+        local theme = action_state.get_selected_entry().value
+        themes:setTemp(theme)
       end)
       return true
     end,

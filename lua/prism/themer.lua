@@ -1,12 +1,14 @@
-local M           = {}
-local prismPath   = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
-vim.g.themeCache  = vim.fn.stdpath "data" .. "/prism/"
-local hl_files    = prismPath .. "/highlights"
-local schemefiles = prismPath .. "/schemes"
+local M              = {}
+local prismPath      = vim.fn.fnamemodify(debug.getinfo(1, "S").source:sub(2), ":p:h")
+vim.g.themeCache     = vim.fn.stdpath "data" .. "/prism/"
+vim.g.themeTempCache = vim.fn.stdpath "data" .. "/prism_temp/"
+local hl_files       = prismPath .. "/highlights"
+local schemefiles    = prismPath .. "/schemes"
 
-M.colors          = {}
-M.modules         = {}
-M.themes          = {}
+M.colors             = {}
+M.modules            = {}
+M.themes             = {}
+M.transparent        = false
 
 function M:gendef()
   for _, file in ipairs(vim.fn.readdir(schemefiles)) do
@@ -16,7 +18,6 @@ function M:gendef()
   end
 end
 
-M.transparent = false
 function M:mergeTb(...)
   return vim.tbl_deep_extend("force", ...)
 end
@@ -57,6 +58,17 @@ function M:getColors()
   return self.colors
 end
 
+function M:toCacheTemp(filename, tb)
+  local lines = "return string.dump(function()" .. self:tableToStr(tb) .. "end, true)"
+  local file = io.open(vim.g.themeTempCache .. filename, "wb")
+
+  if file then
+    ---@diagnostic disable-next-line: deprecated
+    file:write(loadstring(lines)())
+    file:close()
+  end
+end
+
 function M:toCache(filename, tb)
   local lines = "return string.dump(function()" .. self:tableToStr(tb) .. "end, true)"
   local file = io.open(vim.g.themeCache .. filename, "wb")
@@ -85,6 +97,23 @@ function M:compile()
   end
 end
 
+function M:compileTemp()
+  if not vim.loop.fs_stat(vim.g.themeTempCache) then
+    vim.fn.mkdir(vim.g.themeTempCache, "p")
+  end
+
+  for _, file in ipairs(vim.fn.readdir(hl_files)) do
+    local filename = vim.fn.fnamemodify(file, ":r")
+    M:toCacheTemp(filename, M:loadTb(filename))
+  end
+
+
+  for _, file in ipairs(vim.fn.readdir(M.customFiles)) do
+    local filename = vim.fn.fnamemodify(file, ":r")
+    M:toCacheTemp(filename, M:loadLocalTb(filename))
+  end
+end
+
 function M:setTermCols()
   vim.g.terminal_color_0 = self.colors.color0
   vim.g.terminal_color_1 = self.colors.color1
@@ -102,6 +131,14 @@ function M:setTermCols()
   vim.g.terminal_color_13 = self.colors.color13
   vim.g.terminal_color_14 = self.colors.color14
   vim.g.terminal_color_15 = self.colors.color15
+end
+
+function M:loadTemp()
+  M:compileTemp()
+  for _, file in ipairs(vim.fn.readdir(vim.g.themeTempCache)) do
+    dofile(vim.g.themeTempCache .. file)
+  end
+  M:setTermCols()
 end
 
 function M:load()
@@ -211,6 +248,21 @@ function M:set(name)
   end
   self.colors = theme
   M:load()
+end
+
+function M:setTemp(name)
+  self:reloadModule("prism.highlights")
+  self:reloadModule("" .. self.customFilesPath)
+  self:reloadAllModules()
+  local theme
+  for _, i in ipairs(self.themes) do
+    if i.name == name then
+      theme = i
+      break
+    end
+  end
+  self.colors = theme
+  M:loadTemp()
 end
 
 function M:random()
