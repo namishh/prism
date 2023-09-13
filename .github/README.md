@@ -81,9 +81,9 @@ return {
 ## Preinstalled themes
 
 + Ayu
-+ Decay
 + Cosmicdecay
 + Cat 
++ Decay
 + Dracula
 + Everblush 
 + Everforest

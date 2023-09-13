@@ -2,6 +2,7 @@ local colors = require("prism.themer"):getColors()
 
 return {
   Normal = { fg = colors.foreground, bg = colors.background },
+  NoneBG = { fg = colors.foreground, bg = "NONE" },
   SignColumn = { bg = colors.background, fg = colors.background },
   MsgArea = { fg = colors.foreground, bg = colors.background },
   ModeMsg = { fg = colors.foreground, bg = colors.background },

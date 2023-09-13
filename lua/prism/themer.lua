@@ -279,6 +279,17 @@ local has_value = function(tab, val)
   return false
 end
 
+function M:openTelescope()
+  require("prism.picker").open(require("telescope.themes").get_dropdown {
+    layout_config = {
+      preview_cutoff = 1, -- Preview should always show (unless previewer = false)
+      width = 69,
+      height = 18,
+    },
+  }
+  )
+end
+
 function M:setCmds()
   local available_themes = {}
   for _, val in ipairs(M.themes) do
@@ -313,7 +324,7 @@ function M:setCmds()
   cmd(
     'PrismTelescope',
     function()
-      require("prism.picker").open()
+      self:openTelescope()
     end,
     { nargs = 0 }
   )
