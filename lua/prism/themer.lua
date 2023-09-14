@@ -295,6 +295,7 @@ function M:setCmds()
   for _, val in ipairs(M.themes) do
     table.insert(available_themes, val.name)
   end
+  table.sort(available_themes)
   local cmd = vim.api.nvim_create_user_command
   cmd(
     'PrismSet',
