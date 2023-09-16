@@ -9,6 +9,14 @@ M.colors             = {}
 M.modules            = {}
 M.themes             = {}
 M.transparent        = false
+local function indexOf(array, value)
+  for i, v in ipairs(array) do
+    if v == value then
+      return i
+    end
+  end
+  return nil
+end
 
 function M:gendef()
   for _, file in ipairs(vim.fn.readdir(schemefiles)) do
@@ -58,9 +66,9 @@ function M:getColors()
   return self.colors
 end
 
-function M:toCacheTemp(filename, tb)
+function M:toCache(filename, tb, path)
   local lines = "return string.dump(function()" .. self:tableToStr(tb) .. "end, true)"
-  local file = io.open(vim.g.themeTempCache .. filename, "wb")
+  local file = io.open(path .. filename, "wb")
 
   if file then
     ---@diagnostic disable-next-line: deprecated
@@ -69,49 +77,35 @@ function M:toCacheTemp(filename, tb)
   end
 end
 
-function M:toCache(filename, tb)
-  local lines = "return string.dump(function()" .. self:tableToStr(tb) .. "end, true)"
-  local file = io.open(vim.g.themeCache .. filename, "wb")
-
-  if file then
-    ---@diagnostic disable-next-line: deprecated
-    file:write(loadstring(lines)())
-    file:close()
-  end
-end
-
-function M:compile()
-  if not vim.loop.fs_stat(vim.g.themeCache) then
+function M:compile(path)
+  if not vim.loop.fs_stat(path) then
     vim.fn.mkdir(vim.g.themeCache, "p")
   end
 
-  for _, file in ipairs(vim.fn.readdir(hl_files)) do
-    local filename = vim.fn.fnamemodify(file, ":r")
-    M:toCache(filename, M:loadTb(filename))
-  end
-
-
-  for _, file in ipairs(vim.fn.readdir(M.customFiles)) do
-    local filename = vim.fn.fnamemodify(file, ":r")
-    M:toCache(filename, M:loadLocalTb(filename))
-  end
-end
-
-function M:compileTemp()
-  if not vim.loop.fs_stat(vim.g.themeTempCache) then
-    vim.fn.mkdir(vim.g.themeTempCache, "p")
-  end
+  local allThemes = {}
 
   for _, file in ipairs(vim.fn.readdir(hl_files)) do
     local filename = vim.fn.fnamemodify(file, ":r")
-    M:toCacheTemp(filename, M:loadTb(filename))
+    local a = M:loadTb(filename)
+    for k, f in pairs(a) do
+      allThemes[k] = f
+    end
   end
-
-
   for _, file in ipairs(vim.fn.readdir(M.customFiles)) do
     local filename = vim.fn.fnamemodify(file, ":r")
-    M:toCacheTemp(filename, M:loadLocalTb(filename))
+    local a = M:loadLocalTb(filename)
+    for k, f in pairs(a) do
+      for _, i in pairs(allThemes) do
+        if i == f then
+          table.remove(allThemes, indexOf(allThemes, i))
+          break
+        end
+      end
+      allThemes[k] = f
+    end
   end
+
+  self:toCache("allThemes", allThemes, path)
 end
 
 function M:setTermCols()
@@ -133,36 +127,15 @@ function M:setTermCols()
   vim.g.terminal_color_15 = self.colors.color15
 end
 
-function M:loadTemp()
-  M:compileTemp()
-  for _, file in ipairs(vim.fn.readdir(vim.g.themeTempCache)) do
-    dofile(vim.g.themeTempCache .. file)
-  end
-  M:setTermCols()
-end
-
-function M:load()
-  M:compile()
-  for _, file in ipairs(vim.fn.readdir(vim.g.themeCache)) do
-    dofile(vim.g.themeCache .. file)
-  end
+function M:load(path)
+  M:compile(path)
+  dofile(path .. "allThemes")
   M:setTermCols()
 end
 
 function M:loadColsOnly()
-  for _, file in ipairs(vim.fn.readdir(vim.g.themeCache)) do
-    dofile(vim.g.themeCache .. file)
-  end
+  dofile(vim.g.themeCache .. "allThemes")
   M:setTermCols()
-end
-
-local function indexOf(array, value)
-  for i, v in ipairs(array) do
-    if v == value then
-      return i
-    end
-  end
-  return nil
 end
 
 function M:reloadModule(name)
@@ -225,10 +198,10 @@ function M:setup(opts)
   local n = table.concat(f, ".")
   M.customFilesPath = n or "hls"
   if reset then
-    M:load()
+    M:load(vim.g.themeCache)
   else
     if vim.fn.isdirectory(vim.g.themeCache) ~= 1 then
-      M:load()
+      M:load(vim.g.themeCache)
     else
       M:loadColsOnly()
     end
@@ -247,7 +220,7 @@ function M:set(name)
     end
   end
   self.colors = theme
-  M:load()
+  M:load(vim.g.themeCache)
 end
 
 function M:setTemp(name)
@@ -262,7 +235,7 @@ function M:setTemp(name)
     end
   end
   self.colors = theme
-  M:loadTemp()
+  M:load(vim.g.themeTempCache)
 end
 
 function M:random()
