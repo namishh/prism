@@ -299,6 +299,7 @@ function M:setCmds()
     'PrismTelescope',
     function()
       self:openTelescope()
+      self:setTemp(M.themes[1].name)
     end,
     { nargs = 0 }
   )

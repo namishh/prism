@@ -15,6 +15,7 @@ end
 
 table.sort(schemes)
 
+local themeChosen = false
 
 M.open = function(opts)
   opts = opts or {}
@@ -47,6 +48,7 @@ M.open = function(opts)
       actions.select_default:replace(function()
         local theme = action_state.get_selected_entry().value
         themes:set(theme)
+        themeChosen = true
         actions.close(buffer)
       end)
       actions.move_selection_next:replace(function(prompt_bufnr)
