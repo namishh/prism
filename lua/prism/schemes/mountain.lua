@@ -6,7 +6,7 @@ return {
   comment = '#8f9093',
   darker = '#0c0c0c',
   cursor = "#e9e9e9",
-  black = "#232323",
+  black = "#0f0f0f",
   color0 = "#121212",
   color1 = "#ac8a8c",
   color2 = "#8aac8b",
