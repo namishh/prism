@@ -299,11 +299,6 @@ function M:setCmds()
     'PrismTelescope',
     function()
       self:openTelescope()
-      if vim.fn.isdirectory(vim.g.themeCache) ~= 1 then
-        M:load(vim.g.themeCache)
-      else
-        M:loadColsOnly()
-      end
       self:setTemp(M.themes[1].name)
     end,
     { nargs = 0 }
