@@ -80,6 +80,7 @@ return {
 
 ## Preinstalled themes
 
++ Aquarium
 + Ayu
 + Cosmicdecay
 + Cat 
