@@ -79,7 +79,7 @@ end
 
 function M:compile(path)
   if not vim.loop.fs_stat(path) then
-    vim.fn.mkdir(vim.g.themeCache, "p")
+    vim.fn.mkdir(path, "p")
   end
 
   local allThemes = {}
@@ -299,6 +299,11 @@ function M:setCmds()
     'PrismTelescope',
     function()
       self:openTelescope()
+      if vim.fn.isdirectory(vim.g.themeCache) ~= 1 then
+        M:load(vim.g.themeCache)
+      else
+        M:loadColsOnly()
+      end
       self:setTemp(M.themes[1].name)
     end,
     { nargs = 0 }
