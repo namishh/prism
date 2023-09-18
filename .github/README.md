@@ -2,6 +2,10 @@
   <img src="prism.png" alt="logo">
 </div>
 
+<video controls>
+  <source src="vid.mp4" type="video/mp4">
+</video>
+
 ## Install
 
 Requires [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
@@ -77,6 +81,18 @@ return {
   AlphaFooter = { fg = colors.comment, bg = colors.background },
 }
 ```
+
+### Minimal Configuration
+
+```lua
+require("prism"):setup({
+  reset = true, -- applies the currentTheme everytime neovim is opened
+  currentTheme = "onedarker",
+  reload = { "lualine" }, -- modules to be reloaded everytime theme is set 
+})
+```
+But yes calling the setup function atleast once is important!
+
 
 ## Preinstalled themes
 

@@ -91,17 +91,19 @@ function M:compile(path)
       allThemes[k] = f
     end
   end
-  for _, file in ipairs(vim.fn.readdir(M.customFiles)) do
-    local filename = vim.fn.fnamemodify(file, ":r")
-    local a = M:loadLocalTb(filename)
-    for k, f in pairs(a) do
-      for _, i in pairs(allThemes) do
-        if i == f then
-          table.remove(allThemes, indexOf(allThemes, i))
-          break
+  if M.customFiles ~= "" then
+    for _, file in ipairs(vim.fn.readdir(M.customFiles)) do
+      local filename = vim.fn.fnamemodify(file, ":r")
+      local a = M:loadLocalTb(filename)
+      for k, f in pairs(a) do
+        for _, i in pairs(allThemes) do
+          if i == f then
+            table.remove(allThemes, indexOf(allThemes, i))
+            break
+          end
         end
+        allThemes[k] = f
       end
-      allThemes[k] = f
     end
   end
 
@@ -181,7 +183,7 @@ function M:setup(opts)
   end
   self.colors = curr
   M.transparent = opts.transparent or M.transparent
-  M.customFiles = opts.customFiles or vim.fn.stdpath "config" .. "/lua/hls"
+  M.customFiles = opts.customFiles or ""
   local function mysplit(inputstr, sep)
     if sep == nil then
       sep = "%s"
@@ -196,7 +198,7 @@ function M:setup(opts)
   local a = tostring(M.customFiles):gsub(tostring(vim.fn.stdpath "config" .. "/lua/"), "")
   local f = mysplit(a, "/")
   local n = table.concat(f, ".")
-  M.customFilesPath = n or "hls"
+  M.customFilesPath = n or ""
   if reset then
     M:load(vim.g.themeCache)
   else
@@ -210,7 +212,9 @@ end
 
 function M:set(name)
   self:reloadModule("prism.highlights")
-  self:reloadModule("" .. self.customFilesPath)
+  if M.customFiles ~= "" then
+    self:reloadModule("" .. self.customFilesPath)
+  end
   self:reloadAllModules()
   local theme
   for _, i in ipairs(self.themes) do
@@ -225,7 +229,9 @@ end
 
 function M:setTemp(name)
   self:reloadModule("prism.highlights")
-  self:reloadModule("" .. self.customFilesPath)
+  if M.customFiles ~= "" then
+    self:reloadModule("" .. self.customFilesPath)
+  end
   self:reloadAllModules()
   local theme
   for _, i in ipairs(self.themes) do
