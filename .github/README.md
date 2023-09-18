@@ -2,10 +2,6 @@
   <img src="prism.png" alt="logo">
 </div>
 
-<video controls>
-  <source src="vid.mp4" type="video/mp4">
-</video>
-
 ## Install
 
 Requires [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
@@ -109,8 +105,11 @@ But yes calling the setup function atleast once is important!
 + Groove
 + Gruv
 + Github
++ Horizon
 + Kanagawa
 + Kizu
++ Material Dark 
++ Monokai Pro
 + Mountain
 + Nirvana
 + Nord
@@ -121,6 +120,7 @@ But yes calling the setup function atleast once is important!
 + Serenade
 + Serenity
 + Sweetpastel
++ Synthwave84
 + Tokyodull
 + Tundra
 + Verdant
