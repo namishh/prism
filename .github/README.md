@@ -95,46 +95,6 @@ require("prism"):setup({
 ```
 But yes calling the setup function atleast once is important!
 
-
-## Preinstalled themes
-
-+ Aquarium
-+ Ayu
-+ Cosmicdecay
-+ Cat 
-+ Camellia Hope
-+ Decay
-+ Dracula
-+ Everblush 
-+ Everforest
-+ Fox
-+ Ghost
-+ Groove
-+ Gruv
-+ Github
-+ Horizon
-+ Kanagawa
-+ Kizu
-+ Material Dark 
-+ Monokai Pro
-+ Mountain
-+ Nirvana
-+ Nord
-+ Onedarker
-+ Onenord
-+ Oxo
-+ Radium
-+ Serenade
-+ Serenity
-+ Sweetpastel
-+ Synthwave84
-+ Tokyodull
-+ Tundra
-+ Verdant
-+ Vscodedull
-+ Yata
-+ Yoru
-
 ## Telescope picker
 
 There is telescope picker included with this config. Shows the default and as well as the user defined colorschemes. Invoke it by
@@ -185,6 +145,46 @@ For even more options for coloring, a bunch of methods have been provided in `pr
 - [harpoon](https://github.com/ThePrimeagen/harpoon)
 - [hop](https://github.com/phaazon/hop.nvim)
 - [notify](https://github.com/rcarriga/nvim-notify)
+
+## Preinstalled themes
+
++ Aquarium
++ Ayu
++ Cosmicdecay
++ Cat 
++ Camellia Hope
++ Decay
++ Dracula
++ Everblush 
++ Everforest
++ Fox
++ Ghost
++ Groove
++ Gruv
++ Github
++ Horizon
++ Kanagawa
++ Kizu
++ Material Dark 
++ Monokai Pro
++ Mountain
++ Nirvana
++ Nord
++ Onedarker
++ Onenord
++ Oxo
++ Radium
++ Rose
++ Serenade
++ Serenity
++ Sweetpastel
++ Synthwave84
++ Tokyodull
++ Tundra
++ Verdant
++ Vscodedull
++ Yata
++ Yoru
 
 ### Todo
 
