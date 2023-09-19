@@ -14,6 +14,12 @@ Requires [telescope.nvim](https://github.com/nvim-telescope/telescope.nvim)
     "chadcat7/prism",
     lazy = true,
     events = {"UIEnter"},
+    config = function()
+        require("prism"):setup({
+            currentTheme = "onedarker",
+            reset = false,
+        })
+    end
 }
 ```
 ## Configuration
