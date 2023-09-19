@@ -4,7 +4,7 @@ return {
   foreground = "#e4e5e7",
   cursorline = '#1E1F24',
   comment = '#8f9093',
-  darker = '#0a0b0c',
+  darker = '#101013',
   cursor = "#e4e5e7",
   black = "#17181C",
   color0 = "#26272B",
