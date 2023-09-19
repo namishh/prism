@@ -102,6 +102,7 @@ But yes calling the setup function atleast once is important!
 + Ayu
 + Cosmicdecay
 + Cat 
++ Camellia Hope
 + Decay
 + Dracula
 + Everblush 
@@ -130,7 +131,6 @@ But yes calling the setup function atleast once is important!
 + Tokyodull
 + Tundra
 + Verdant
-+ Vixima
 + Vscodedull
 + Yata
 + Yoru
