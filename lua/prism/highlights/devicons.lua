@@ -2,6 +2,7 @@ local colors = require("prism.themer"):getColors()
 return {
   DevIconDefault = { fg = colors.color7 },
   DevIconc = { fg = colors.color12 },
+  DevIconASTRO = { fg = colors.color3 },
   DevIconcss = { fg = colors.color12 },
   DevIcondeb = { fg = colors.color6 },
   DevIconDockerfile = { fg = colors.color6 },
