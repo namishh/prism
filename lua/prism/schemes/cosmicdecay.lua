@@ -1,3 +1,4 @@
+-- experimental cosmic decay from https://github.com/decaycs/decay.nvim
 return {
   name = "cosmicdecay",
   color0 = '#272935',

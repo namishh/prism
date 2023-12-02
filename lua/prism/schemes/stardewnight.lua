@@ -1,3 +1,4 @@
+-- stardew night by sammmyete
 return {
   name = "stardewnight",
   comment = "#676778",
@@ -24,4 +25,3 @@ return {
   color14 = "#7acaff",
   color15 = "#DCDFE4",
 }
-

@@ -1,3 +1,4 @@
+-- thanks to tsukki (https://github.com/tsukki9696) for this colorscheme
 return {
   name = "biscuit",
   color0 = '#231c1c',

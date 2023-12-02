@@ -21,5 +21,5 @@ return {
   black = '#080c0d',
   darker = "#05090a",
   foreground = '#C5C8C9',
-  cursorline = '#0b0f10',
+  cursorline = '#0f1415',
 }

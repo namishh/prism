@@ -1,3 +1,4 @@
+-- cameilla hope by Vixima https://github.com/Vixima
 return {
   name = "camelliahope",
   background = "#17181C",

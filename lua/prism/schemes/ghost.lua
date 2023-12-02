@@ -1,3 +1,4 @@
+-- the ghost scheme from the ghost man himself, javacafe01 https://github.com/JavaCafe01
 return {
   name = "ghost",
   background = "#14171b",

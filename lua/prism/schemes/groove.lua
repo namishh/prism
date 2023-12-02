@@ -1,3 +1,4 @@
+-- groove theme ported from nvchad
 return {
   name = "groove",
   comment = "#928374",

@@ -1,3 +1,4 @@
+--  decay from https://github.com/decaycs/decay.nvim
 return {
   name = "decay",
   color0 = '#21262e',

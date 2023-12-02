@@ -1,3 +1,4 @@
+--  yoru theme by rxhyn
 return {
   name = "yoru",
   background = "#0c0e0f",
