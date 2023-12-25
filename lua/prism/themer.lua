@@ -110,34 +110,32 @@ function M:compile(path)
   self:toCache("allThemes", allThemes, path)
 end
 
-function M:setTermCols()
-  vim.g.terminal_color_0 = self.colors.color0
-  vim.g.terminal_color_1 = self.colors.color1
-  vim.g.terminal_color_2 = self.colors.color2
-  vim.g.terminal_color_3 = self.colors.color3
-  vim.g.terminal_color_4 = self.colors.color4
-  vim.g.terminal_color_5 = self.colors.color5
-  vim.g.terminal_color_6 = self.colors.color6
-  vim.g.terminal_color_7 = self.colors.color7
-  vim.g.terminal_color_8 = self.colors.color8
-  vim.g.terminal_color_9 = self.colors.color9
-  vim.g.terminal_color_10 = self.colors.color10
-  vim.g.terminal_color_11 = self.colors.color11
-  vim.g.terminal_color_12 = self.colors.color12
-  vim.g.terminal_color_13 = self.colors.color13
-  vim.g.terminal_color_14 = self.colors.color14
-  vim.g.terminal_color_15 = self.colors.color15
+function M:setTermCols(colors)
+  vim.g.terminal_color_0 = colors.color0
+  vim.g.terminal_color_1 = colors.color1
+  vim.g.terminal_color_2 = colors.color2
+  vim.g.terminal_color_3 = colors.color3
+  vim.g.terminal_color_4 = colors.color4
+  vim.g.terminal_color_5 = colors.color5
+  vim.g.terminal_color_6 = colors.color6
+  vim.g.terminal_color_7 = colors.color7
+  vim.g.terminal_color_8 = colors.color8
+  vim.g.terminal_color_9 = colors.color9
+  vim.g.terminal_color_10 = colors.color10
+  vim.g.terminal_color_11 = colors.color11
+  vim.g.terminal_color_12 = colors.color12
+  vim.g.terminal_color_13 = colors.color13
+  vim.g.terminal_color_14 = colors.color14
+  vim.g.terminal_color_15 = colors.color15
 end
 
 function M:load(path)
   M:compile(path)
   dofile(path .. "allThemes")
-  M:setTermCols()
 end
 
 function M:loadColsOnly()
   dofile(vim.g.themeCache .. "allThemes")
-  M:setTermCols()
 end
 
 function M:reloadModule(name)
@@ -224,6 +222,7 @@ function M:set(name)
     end
   end
   self.colors = theme
+  M:setTermCols(theme)
   M:load(vim.g.themeCache)
 end
 
@@ -241,6 +240,7 @@ function M:setTemp(name)
     end
   end
   self.colors = theme
+  M:setTermCols(theme)
   M:load(vim.g.themeTempCache)
 end
 
