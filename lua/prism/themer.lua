@@ -40,6 +40,12 @@ function M:genCustom()
   vim.g.prismThemes = self.themes
 end
 
+function M:genThemes()
+  self.themes = {}
+  M:gendef()
+  M:genCustom()
+end
+
 function M:mergeTb(...)
   return vim.tbl_deep_extend("force", ...)
 end
@@ -164,8 +170,6 @@ end
 
 vim.api.nvim_create_autocmd({ "CursorHold" }, {
   callback = function()
-    M:gendef()
-    M:genCustom()
     M:setCmds()
   end
 })
@@ -183,6 +187,7 @@ function M:setup(opts)
     table.insert(self.modules, t)
   end
   local curr = {}
+  M:genThemes()
   for _, t in ipairs(self.themes) do
     if t.name == currentTheme then
       curr = t
@@ -255,8 +260,7 @@ function M:setTemp(name)
 end
 
 function M:random()
-  self:gendef()
-  self:genCustom()
+  self:genThemes()
   local theme = self.themes[math.random(#self.themes)]
   self:set(theme.name)
 end
@@ -271,8 +275,7 @@ local has_value = function(tab, val)
 end
 
 function M:openTelescope()
-  self:gendef()
-  self:genCustom()
+  self:genThemes()
   require("prism.picker").open(require("telescope.themes").get_dropdown {
     layout_config = {
       preview_cutoff = 1, -- Preview should always show (unless previewer = false)
