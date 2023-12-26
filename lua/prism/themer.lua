@@ -9,6 +9,7 @@ M.colors             = {}
 M.modules            = {}
 M.themes             = {}
 M.transparent        = false
+
 local function indexOf(array, value)
   for i, v in ipairs(array) do
     if v == value then
@@ -24,6 +25,19 @@ function M:gendef()
     local a = require("prism.schemes." .. filename)
     table.insert(self.themes, a)
   end
+end
+
+function M:genCustom()
+    for _, t in ipairs(self.customSchemes) do
+    for _, i in ipairs(self.themes) do
+      if i.name == t.name then
+        table.remove(self.themes, indexOf(self.themes, i))
+        break
+      end
+    end
+    table.insert(self.themes, t)
+  end
+  vim.g.prismThemes = self.themes
 end
 
 function M:mergeTb(...)
@@ -148,30 +162,26 @@ function M:reloadAllModules()
   end
 end
 
+vim.api.nvim_create_autocmd({ "CursorHold" }, {
+  callback = function()
+    M:gendef()
+    M:genCustom()
+    M:setCmds()
+  end
+})
+
 function M:setup(opts)
-  self:gendef()
   opts = opts or {}
-  local customSchemes = opts.customSchemes or {}
+  self.customSchemes = opts.customSchemes or {}
   local currentTheme = opts.currentTheme or "cat"
   local reset = false
   if opts.reset == true then
     reset = true
   end
   local mods = opts.reload or {}
-  for _, t in ipairs(customSchemes) do
-    for _, i in ipairs(self.themes) do
-      if i.name == t.name then
-        table.remove(self.themes, indexOf(self.themes, i))
-        break
-      end
-    end
-    table.insert(self.themes, t)
-  end
   for _, t in ipairs(mods) do
     table.insert(self.modules, t)
   end
-  self:setCmds()
-  vim.g.prismThemes = self.themes
   local curr = {}
   for _, t in ipairs(self.themes) do
     if t.name == currentTheme then
@@ -245,6 +255,8 @@ function M:setTemp(name)
 end
 
 function M:random()
+  self:gendef()
+  self:genCustom()
   local theme = self.themes[math.random(#self.themes)]
   self:set(theme.name)
 end
@@ -259,6 +271,8 @@ local has_value = function(tab, val)
 end
 
 function M:openTelescope()
+  self:gendef()
+  self:genCustom()
   require("prism.picker").open(require("telescope.themes").get_dropdown {
     layout_config = {
       preview_cutoff = 1, -- Preview should always show (unless previewer = false)
