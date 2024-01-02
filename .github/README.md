@@ -155,6 +155,7 @@ For even more options for coloring, a bunch of methods have been provided in `pr
 + Decay
 + Everblush 
 + Everforest
++ Fovere
 + Fullerene
 + Ghost
 + Gruv
