@@ -148,43 +148,28 @@ For even more options for coloring, a bunch of methods have been provided in `pr
 
 ## Preinstalled themes
 
-+ Aquarium
-+ Ayu
++ Biscuit
 + Cosmicdecay
-+ Cat 
 + Camellia Hope
++ Cat 
 + Decay
-+ Dracula
 + Everblush 
 + Everforest
-+ Fox
++ Fullerene
 + Ghost
-+ Groove
 + Gruv
-+ Github
-+ Horizon
 + Kanagawa
 + Kizu
-+ Material Dark 
-+ Monokai Pro
-+ Mountain
 + Nirvana
 + Nord
 + Onedarker
-+ Onenord
 + Oxo
 + Radium
 + Rose
-+ Serenade
-+ Serenity
++ Swamp
 + Sweetpastel
-+ Synthwave84
 + Tokyodull
-+ Tundra
 + Verdant
-+ Vscodedull
-+ Yata
-+ Yoru
 
 ### Todo
 
