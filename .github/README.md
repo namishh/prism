@@ -149,28 +149,19 @@ For even more options for coloring, a bunch of methods have been provided in `pr
 ## Preinstalled themes
 
 + Biscuit
-+ Cosmicdecay
 + Camellia Hope
 + Cat 
 + Decay
 + Everblush 
 + Everforest
-+ Fovere
-+ Fullerene
 + Ghost
 + Gruv
-+ Kanagawa
-+ Kizu
-+ Nirvana
 + Nord
 + Onedarker
 + Oxo
 + Radium
 + Rose
-+ Swamp
-+ Sweetpastel
 + Tokyodull
-+ Verdant
 
 ### Todo
 
