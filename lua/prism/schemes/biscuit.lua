@@ -20,7 +20,7 @@ return {
   comment = '#6D5F5F',
   background = "#1a1515",
   black = '#1a1515',
-  darker = "#191414",
+  darker = "#161212",
   foreground = '#ffe9c7',
   cursorline = '#1f1919',
 }
