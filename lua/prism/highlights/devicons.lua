@@ -10,6 +10,8 @@ return {
   DevIconjpeg = { fg = colors.color2 },
   DevIconjpg = { fg = colors.color2 },
   DevIconjs = { fg = colors.color11 },
+  DevIconjsx = { fg = colors.color11 },
+  DevIcontsx = { fg = colors.color12 },
   DevIconkt = { fg = colors.color4 },
   DevIconlock = { fg = colors.color4 },
   DevIconmp3 = { fg = colors.color1 },
